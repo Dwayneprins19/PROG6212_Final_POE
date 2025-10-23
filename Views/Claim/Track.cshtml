@@ -1,0 +1,40 @@
+﻿@model IEnumerable<CMCSProject.Models.Claim>
+
+@{
+	ViewData["Title"] = "Track Claim Status";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+@if (!Model.Any())
+{
+	<p class="text-muted">No claims found. Submit a claim to begin tracking.</p>
+}
+else
+{
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Lecturer</th>
+				<th>Hours Worked</th>
+				<th>Rate</th>
+				<th>Total Amount</th>
+				<th>Status</th>
+				<th>Date Submitted</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var claim in Model)
+			{
+				<tr>
+					<td>@claim.LecturerName</td>
+					<td>@claim.HoursWorked</td>
+					<td>@claim.HourlyRate</td>
+					<td>@claim.TotalAmount.ToString("C")</td>
+					<td>@claim.Status</td>
+					<td>@claim.DateSubmitted.ToShortDateString()</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}

@@ -1,0 +1,58 @@
+﻿@model IEnumerable<CMCSProject.Models.Claim>
+@{
+	ViewData["Title"] = "Verify Claims";
+}
+
+<h2>Verify Claims (Programme Coordinator)</h2>
+
+@if (!Model.Any())
+{
+	<p class="text-muted">No claims submitted yet.</p>
+}
+else
+{
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Lecturer</th>
+				<th>Hours</th>
+				<th>Rate</th>
+				<th>Total</th>
+				<th>Status</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var claim in Model){
+				<tr>
+					<td>@claim.LecturerName</td>
+					<td>@claim.HoursWorked</td>
+					<td>@claim.HourlyRate.ToString("C")</td>
+					<td>@claim.TotalAmount.ToString("C")</td>
+					<td>
+						@if(claim.Status == "Pending")
+						{
+							<span class="badge badge-accent">Pending</span>
+						}
+						else if(claim.Status == "Verified")
+						{
+							<span class="badge bg-primary">Verified</span>
+						}
+						else if(claim.Status == "Approved")
+						{
+							<span class="badge bg-success">Approved</span>
+						}
+					</td>
+					<td>
+						@if(claim.Status == "Pending")
+						{
+							<form asp-action="VerifyClaim" asp-route-id="@claim.Id" method="post">
+								<button type="submit" class="btn btn-accent btn-sm">Verify</button>
+							</form>
+						}
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}

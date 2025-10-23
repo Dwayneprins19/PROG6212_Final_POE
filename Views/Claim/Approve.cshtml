@@ -1,0 +1,63 @@
+﻿@model IEnumerable<CMCSProject.Models.Claim>
+@{
+	ViewData["Title"] = "Approve Claims";
+}
+
+<h2>Approve or Reject Claims (Academic Manager)</h2>
+
+@if (!Model.Any())
+{
+	<p class="text-muted">No verified claims available.</p>
+}
+else
+{
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th>Lecturer</th>
+				<th>Hours</th>
+				<th>Rate</th>
+				<th>Total</th>
+				<th>Status</th>
+				<th>Action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var claim in Model)
+			{
+				<tr>
+					<td>@claim.LecturerName</td>
+					<td>@claim.HoursWorked</td>
+					<td>@claim.HourlyRate.ToString("C")</td>
+					<td>@claim.TotalAmount.ToString("C")</td>
+					<td>
+						@if (claim.Status == "Pending")
+						{
+							<span class="badge badge-accent">Pending</span>
+						}
+						else if (claim.Status == "Verified")
+						{
+							<span class="badge bg-primary">Verified</span>
+						}
+						else if (claim.Status == "Approved")
+						{
+							<span class="badge bg-success">Approved</span>
+						}
+						else if (claim.Status == "Rejected")
+						{
+							<span class="badge bg-danger">Rejected</span>
+						}
+					</td>
+					<td>
+						@if (claim.Status == "Verified")
+						{
+							<a asp-action="ApproveClaim" asp-route-id="@claim.Id" class="btn btn-success btn-sm">Approve</a>
+							<a asp-action="RejectClaim" asp-route-id="@claim.Id" class="btn btn-danger btn-sm">Reject</a>
+						}
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+}
+

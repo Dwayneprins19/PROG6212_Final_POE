@@ -1,8 +1,15 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "CMCS Home";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container text-center mt-5">
+    <h1 class="mb-4">Claim Management and Calculation System (CMCS)</h1>
+    <p class="lead">Welcome1 Choose your role or task below:</p>
+    
+    <div class="d-grid gap-3 col-6 m-xl-auto mt-4">
+        <a asp-controller="Claim" asp-action="Index" class="btn btn-primary btn-lg">Submit a Claim (Lecturer)</a>
+        <a asp-controller="Claim" asp-action="Verify" class="btn btn-warning btn-lg">Verify Claims (Coordinator)</a>
+        <a asp-controller="Claim" asp-action="Approve" class="btn btn-success btn-lg">Approve Claims (Manager)</a>
+        <a asp-controller="Claim" asp-action="Track" class="btn btn-info btn-lg">Track Claims (Lecturer)</a>
+    </div>
 </div>

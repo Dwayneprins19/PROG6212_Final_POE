@@ -16,8 +16,20 @@ html {
 
 body {
     margin-bottom: 60px;
-    background-color: #f2f2f2;
+    background-color: #f7f9fc;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+h1, h2 {
+    color: #343a40;
+}
+
+table {
+    background-color: #fff;
+}
+
+.btn-lg {
+    border-radius: 12px;
 }
 
 .navbar {
