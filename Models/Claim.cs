@@ -28,7 +28,7 @@ namespace CMCSProject.Models
 		public string Status { get; set; } = "Pending";
 
 		[Display(Name ="Uploaded Document")]
-		public string UploadedDocument { get; set; }
+		public string UploadedDocumentPath { get; set; }
 
 		[Display(Name = "Additional Notes")]
 		[MaxLength(250)]
